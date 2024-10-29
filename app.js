@@ -20,11 +20,21 @@ app.set('trust proxy', true);
 const port = process.env.PORT || 5000;
 const mongoUrl = process.env.MONGO_DB_URL;
 
-mongoose.connect(mongoUrl).then(()=>{
-    console.log("database connected");
-}).catch((err)=>{
-    console.log(err);
-})
+mongoose.connect(mongoUrl)
+    .then(async () => {
+        console.log("Database connected");
+
+        // First, let's check what indexes exist
+        await mongoose.connection.collection('users').dropIndexes();
+        // console.log("Indexes:", indexes);
+    })
+    .catch((err) => {
+        console.log("Error connecting to database:", err);
+    });
+
+
+
+
 
 app.get("/working",(req,res)=>{
     res.send("working");
