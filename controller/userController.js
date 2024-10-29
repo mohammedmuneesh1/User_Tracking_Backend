@@ -22,7 +22,9 @@ const registerUser = (async (req,res)=>{
 
         return res.status(200).send("User Registration Successfull");
     } catch (error) {
-        return res.status(500).send(error.message);
+        // return res.status(500).send(error.message);
+        return res.status(500).json({message:`error while  registering users ${error.message} `});
+
     }
 })
 
@@ -34,7 +36,7 @@ const getAllRegisterData = (async(req,res)=>{
         const result = await User.find({})
         return res.status(200).json({message:"registration data fetched successfully",data:result});
     } catch (error) {
-        return res.status(500).send(error.message);
+        return res.status(500).json({message:`error while getting registered users ${error.message} `});
 
     }
 })
