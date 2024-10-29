@@ -2,9 +2,9 @@ const axios = require("axios")
 
 const getUserGeoLocation =async (req)=>{
 
-    const userIpAddress=  '137.59.87.252';
-    //  const userIpAddress = (req.headers['x-forwarded-for'] || req.socket.remoteAddress).split(',')[0];
-    const apiKey = process.env.GEOLOCATION_API_KEY ;
+    // const userIpAddress=  '137.59.87.252';
+     const userIpAddress = (req.headers['x-forwarded-for'] || req.socket.remoteAddress).split(',')[0];
+     const apiKey = process.env.GEOLOCATION_API_KEY ;
     let geoLocation ={};
 
     
